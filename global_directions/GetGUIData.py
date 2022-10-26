@@ -14,6 +14,8 @@ if __name__ == "__main__":
                     help='name of dataset, for example, ffhq')
 
     parser.add_argument('--real', action='store_true')
+    
+    parser.add_argument('--first', action='store_true')
 
     args = parser.parse_args()
     dataset_name=args.dataset_name
@@ -38,7 +40,7 @@ if __name__ == "__main__":
         w_plus=latents.cpu().detach().numpy()
     else:
         w=np.load('./npy/'+dataset_name+'/W.npy')
-        tmp=w[:50] #only use 50 images
+        tmp = w[:50] if args.first else w[np.random.randint(len(w), size=50),:] # only use 50 images
         tmp=tmp[:,None,:]
         w_plus=np.tile(tmp,(1,M.Gs.components.synthesis.input_shape[1],1))
     np.save('./data/'+dataset_name+'/w_plus.npy',w_plus)
