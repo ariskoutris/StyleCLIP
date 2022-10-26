@@ -2,3 +2,17 @@
 /latents/
 /results/
 /mine/
+
+*__pycache__*
+
+# photo files
+/global_directions/old_data/
+/global_directions/data/
+
+# model weights
+stylegan2-ffhq-config-f.pt
+
+# other
+/global_directions/run_custom_manipulator.sh
+/global_directions/run_manipulator.sh
+setup.txt
